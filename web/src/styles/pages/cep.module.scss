@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.contentCep {
+    display: flex; 
+    flex-direction: column;
+    h2 {
+        font-weight: 600;
+        font-size: 1.25rem;
+
+        color: #BDBDBD;
+
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+
+        margin-top: 3rem;
+
+        li {
+            & + li{
+                margin-top: .75rem;
+            }
+            
+            h4 {
+                color: var(--text-input);
+                font-size: 1.42rem;
+                font-weight: 600;
+            }
+            
+            p {
+                color: #828282;
+                font-weight: 500;
+                font-size: 1.25rem;
+                padding: .4rem .5rem;
+                border-bottom: 1px solid #353535;
+            }
+        }
+
+        .cityUF {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+
+            & div:first-child {
+                width: 75%;
+            }
+
+            & div:last-child {
+                width: 20%
+            }
+        }
+    }
+
+    button {
+        height: 3.5rem;
+        width: 14.75rem;
+
+        border: 0;
+        border-radius: .5rem;
+
+        background: var(--orange);
+        color: var(--white);
+
+        margin: 2.5rem auto 0;
+
+        font-weight: 700;
+
+        transition: filter .2s;
+
+        &:hover {
+            filter: brightness(.85);
+        }
+
+    }
+}
