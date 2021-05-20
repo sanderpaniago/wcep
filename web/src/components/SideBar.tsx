@@ -7,7 +7,7 @@ type SidebarProps = {
 export default function Sidebar({children}: SidebarProps) {
     return (
         <div className={styles.container}>
-            <img src="/logo.svg" alt="W'Cep" />
+            <img src="/logo.svg" alt="W'Cep" id='logo'/>
             {children}
         </div>
     )

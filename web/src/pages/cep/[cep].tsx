@@ -37,7 +37,7 @@ export default function Cep({cep} : CepProps) {
     return (
         <div className={styles.container}>
             <Head>
-                <title>W'cep | {cep.cep} </title>
+                <title>W'cep | {cep?.cep} </title>
             </Head>
             <Sidebar>
                 <div className={styles.contentCep}>
@@ -98,9 +98,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
     const { cep } = ctx.params;
     const { data } = await api.get(`/cep/${cep}`)
-
+    if (!data) {
+        return 
+    } 
     const cepData = {
-        id: data.id,
         cep: data.cep,
         logadouro: data.logadouro || '',
         complemento: data.complemento || '',
