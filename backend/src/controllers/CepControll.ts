@@ -4,46 +4,67 @@ import { getRepository } from 'typeorm'
 import axios from 'axios'
 import * as Yup from 'yup'
 
-import Cep from '../models/Cep'
+import {Cep} from '../models/Cep'
+
+import { coordenadasApi } from '../service/mapBox'
 
 const apiVia = axios.create({
     baseURL: 'https://viacep.com.br'
 })
 
+
 export default {
     async create(req: Request, res: Response) {
-        const { cep } = req.params
 
-        const cepRespository = getRepository(Cep)
+        try {
+            const { cep } = req.params
+            
+            const cepRespository = getRepository(Cep)
 
-        const {data: resViaCep} = await apiVia.get(`/ws/${cep}/json/`)
+            const verifyIsCepCach = await cepRespository.findOne({cep: cep})
+            
+            if(verifyIsCepCach) {
+                return res.status(200).json(verifyIsCepCach)
+            }
 
-        console.log(resViaCep)
+            const {data: resViaCep} = await apiVia.get(`/ws/${cep}/json/`)   
+            const coordenadas = await coordenadasApi(resViaCep.localidade, resViaCep.uf)
+            
+            const data = {
+                cep,
+                logadouro: resViaCep.logadouro || '',
+                complemento: resViaCep.complemento || '',
+                bairro: resViaCep.bairro || '',
+                localidade: resViaCep.localidade,
+                uf: resViaCep.uf,
+                ddd: resViaCep.ddd,
+                latitude: coordenadas.latitude,
+                longitude: coordenadas.longitude,
+            }
 
-        const data = {
-            ...resViaCep,
-            latitude: '',
-            longitude: '',
+            const schema = Yup.object().shape({
+                cep: Yup.string().required(),
+                logadouro: Yup.string(),
+                complemento: Yup.string(),
+                bairro: Yup.string(),
+                localidade: Yup.string().required(),
+                uf: Yup.string().required(),
+                ddd: Yup.string(),
+                latitude: Yup.string().required(),
+                longitude: Yup.string().required(),
+            })
+            
+            await schema.validate(data, {abortEarly: false})
+            
+            const newCep = cepRespository.create(data)
+            await cepRespository.save(newCep)
+            
+            return res.status(201).json(newCep)
+
+
+        } catch (err) {
+            return res.json(err)
         }
-
-        const schema = Yup.object().shape({
-            cep: Yup.string().required(),
-            logadouro: Yup.string().required(),
-            complemento: Yup.string().required(),
-            bairro: Yup.string().required(),
-            localidade: Yup.string().required(),
-            uf: Yup.string().required(),
-            //latitude: Yup.string().required(),
-            //longitude: Yup.string().required(),
-        })
-
-        await schema.validate(data, {abortEarly: false})
-
-        const newCep = cepRespository.create(data)
-
-        await cepRespository.save(newCep)
-
-        return res.status(201).json(newCep)
     },
 
     index: async (req: Request, res: Response) => {

@@ -1,7 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-
-@Entity('Cep')
-export default class Cep {
+@Entity('cep')
+export class Cep {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
@@ -23,9 +22,12 @@ export default class Cep {
     @Column()
     uf: string;
 
-    // @Column()
-    // latitude: string;
+    @Column()
+    ddd: string;
 
-    // @Column()
-    // longitude: string;
+    @Column()
+    latitude: string;
+
+    @Column()
+    longitude: string;
 }
