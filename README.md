@@ -34,7 +34,9 @@ para o back-end:
 para o app we:
 - crie um arquivo .env dentro da pasta web e cria a variavel ```NEXT_PUBLIC_MAPBOX_TOKEN```
 
-Você procisa do **NodeJs** e um gerenciador de dependencias(**NPM ou YARN**) em sua maquina.
+### Executando o projeto
+
+Você precisa do **NodeJs** e um gerenciador de dependencias(**NPM ou YARN**) em sua maquina.
 
 ```sh
 // abrir um terminal para o backend e outro para o app web e rode o comando:
