@@ -22,6 +22,18 @@ Para o Back-end:
 
 ## Pré-requisitos:
 
+### Variavies de ambiente:
+
+Este projeto utiliza a api do [Mapbox](https://www.mapbox.com/) para geração dos mapas. É necessario criar uma conta para e gerar um Aceess Token
+
+apos criar o token ele sera utilizado tanto no backend quando no app web
+
+para o back-end:
+- crie um arquivo .env dentro da pasta backend e crie a variavel ```MAPBOX_KEY```
+
+para o app we:
+- crie um arquivo .env dentro da pasta web e cria a variavel ```NEXT_PUBLIC_MAPBOX_TOKEN```
+
 Você procisa do **NodeJs** e um gerenciador de dependencias(**NPM ou YARN**) em sua maquina.
 
 ```sh
