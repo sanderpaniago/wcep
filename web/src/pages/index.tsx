@@ -19,6 +19,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Sidebar>
+      <img src="/logo.svg" alt="W'Cep" id={styles.logo}/>
         <div className={styles.searchCepContainer}>
             <form onSubmit={handleSubmitCep} onKeyPress={e=> e.key === 'Enter' && handleSubmitCep}>
               <div>

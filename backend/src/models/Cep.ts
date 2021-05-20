@@ -8,7 +8,7 @@ export class Cep {
     cep: string;
 
     @Column()
-    logadouro: string;
+    logradouro: string;
 
     @Column()
     complemento: string;

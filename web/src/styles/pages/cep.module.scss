@@ -2,6 +2,16 @@
     display: flex;
     width: 100%;
     min-height: 100vh;
+
+    #logo {
+        position: absolute;
+        top: 2rem;
+        right: 3rem;
+        z-index: 999;
+        background: var(--black);
+        border-radius: .5rem;
+        padding: .5rem;
+    }
 }
 
 .contentCep {
@@ -19,7 +29,7 @@
     ul {
         list-style: none;
 
-        margin-top: 1.5rem;
+        margin-top: 3rem;
 
         li {
             & + li{
@@ -66,11 +76,12 @@
         background: var(--orange);
         color: var(--white);
 
-        margin: 2.5rem auto 0;
+        margin: 3.5rem auto 0;
 
         font-weight: 700;
 
         transition: filter .2s;
+
 
         &:hover {
             filter: brightness(.85);
@@ -78,9 +89,6 @@
 
     }
 
-    & #logo {
-        left: 3rem;
-    }
 
 }
 

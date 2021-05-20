@@ -12,7 +12,7 @@ import styles from '../../styles/pages/cep.module.scss'
 
 type CepData = {
     cep: string;
-    logadouro: string;
+    logradouro: string;
     complemento: string;
     bairro: string;
     localidade: string;
@@ -36,8 +36,9 @@ export default function Cep({cep} : CepProps) {
 
     return (
         <div className={styles.container}>
+            <img src="/logo.svg" alt="W'Cep" id={styles.logo}/>
             <Head>
-                <title>W'cep | {cep?.cep} </title>
+                <title>W'cep | {cep.cep} </title>
             </Head>
             <Sidebar>
                 <div className={styles.contentCep}>
@@ -45,34 +46,34 @@ export default function Cep({cep} : CepProps) {
                     <ul>
                         <li>
                             <h4>CEP</h4>
-                            <p>{cep?.cep}</p>
+                            <p>{cep.cep}</p>
                         </li>
                         <li>
-                            <h4>Logadouro</h4>
-                            <p>{cep?.logadouro}</p>
+                            <h4>Logradouro</h4>
+                            <p>{cep.logradouro ? cep.logradouro : 'Indisponível'}</p>
                         </li>
                         <li>
                             <h4>Complemento</h4>
-                            <p>{cep?.complemento}</p>
+                            <p>{cep.complemento ? cep.complemento: 'Indisponível'}</p>
                         </li>
                         <li>
                             <h4>Bairro</h4>
-                            <p>{cep?.bairro}</p>
+                            <p>{cep.bairro ? cep.bairro : 'Indisponível'}</p>
                         </li>
                         <li className={styles.cityUF}>
                             <div>
                                 <h4>Cidade</h4>
-                                <p>{cep?.localidade}</p>
+                                <p>{cep.localidade}</p>
                             </div>
 
                             <div>
                                 <h4>UF</h4>
-                                <p>{cep?.uf}</p>
+                                <p>{cep.uf}</p>
                             </div>
                         </li>
                         <li>
                             <h4>DDD</h4>
-                            <p>{cep?.ddd}</p>
+                            <p>{cep.ddd}</p>
                         </li>
                     </ul>
                     <Link href="/">
@@ -83,7 +84,7 @@ export default function Cep({cep} : CepProps) {
                 <img src="/chevron.svg" alt="" className={styles.scroll}/>
             </Sidebar>
 
-            <Map longitude={cep?.longitude} latitude={cep?.latitude} />
+            <Map longitude={cep.longitude} latitude={cep.latitude} />
         </div>
     )
 }
@@ -103,7 +104,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     } 
     const cepData = {
         cep: data.cep,
-        logadouro: data.logadouro || '',
+        logradouro: data.logradouro || '',
         complemento: data.complemento || '',
         bairro: data.bairro || '',
         localidade: data.localidade,

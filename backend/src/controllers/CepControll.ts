@@ -32,7 +32,7 @@ export default {
             
             const data = {
                 cep,
-                logadouro: resViaCep.logadouro || '',
+                logradouro: resViaCep.logradouro || '',
                 complemento: resViaCep.complemento || '',
                 bairro: resViaCep.bairro || '',
                 localidade: resViaCep.localidade,
@@ -44,7 +44,7 @@ export default {
 
             const schema = Yup.object().shape({
                 cep: Yup.string().required(),
-                logadouro: Yup.string(),
+                logradouro: Yup.string(),
                 complemento: Yup.string(),
                 bairro: Yup.string(),
                 localidade: Yup.string().required(),

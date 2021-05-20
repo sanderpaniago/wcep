@@ -2,6 +2,13 @@
     display: flex;
     background: var(--background);
     height: 100vh;
+    position: relative;
+
+    img#logo {
+        position: absolute;
+        top: 1rem;
+        z-index: 1;
+    }
 
     .content {
         display: flex;
@@ -11,6 +18,7 @@
         justify-content: center;
         img {
             width: 80%;
+            max-width: 768px;
         }
     }
 }
