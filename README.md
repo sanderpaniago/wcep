@@ -53,6 +53,9 @@ npm dev
 yarn dev 
 ```
 
+## 📏 Layout do figma
+para acessar o layout do projeto [click aqui](https://www.figma.com/file/xurj7syUXltwm4mOykHnWF/W-Cep?node-id=0%3A1)
+
 ## 👨🏻‍💻 Author:
 
 - **Sander Paniago** - [LinkedIn](https://www.linkedin.com/in/sander-paniago/) - [instagram](https://www.instagram.com/sander_paniago/)
